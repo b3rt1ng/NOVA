@@ -3,7 +3,7 @@ get_out is under heavy developement for the moment
 
 ## Next updates:
 
-* installation of dependecies file
+* installation of dependecies file (for the database)
 * ability to select multiple ip
 * ability to send maliscious packet like deauth or arp spoof
 * listen to the network and save the currents hosts by time to render a graphic and data analytics from it
