@@ -1,51 +1,19 @@
-# MR_SCAN v2.0
-MR_SCAN_V2 is a python3 script that scan your network using pings.
-The V1 is avariable [here](https://github.com/b3rt1ng/MR_SCAN)
-Note that this project has been only made for Linux.
+# get_out
+get_out is under heavy developement for the moment
 
 ## Next updates:
 
-* Device conection power (how much does it take connection in the network)
-* Choose an adress by it's position on the scanned adress list
-* Linkable to MR_SPOOF
+* installation of dependecies file
+* ability to select multiple ip
+* ability to send maliscious packet like deauth or arp spoof
+* listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
 ### what do you need to run this program ?
 
-you will need:
-```
-Python 3
-the uuid module
-the netifaces module
-```
+For the moment you don't need to install any modules because it only use the in-builds ones
 
-i'll ad a PIP compatible file to install thoose directly.
-
-### Installation
-
-```
-git clone https://github.com/b3rt1ng/MR_SCAN_V2
-```
-
-### Features
-
-You can display all the ip scanned by changing line 6
-```python
-no_reach = False
-```
-into
-```python
-no_reach = True
-```
-
-### What i'm working on.
-
-```python
-def resolveMac(mac):
-    url = "https://api.macvendors.com/" + str(mac)        #it's actuallt using urllib but i'm planing to use curl
-    b_str = urllib.request.urlopen(url).read()            #combined with grep and a string treatment, you'll get the vendor name faster
-    b_str = str(b_str, 'utf-8')                           #as well, you will not need the urllib library
-    return b_str
-```
+You need to get the wireshark OUI database in order to resolve the vendor name
+[Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
