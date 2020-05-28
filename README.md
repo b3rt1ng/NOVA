@@ -14,6 +14,11 @@ For the moment you don't need to install any modules because it only use the in-
 
 You need to get the wireshark OUI database in order to resolve the vendor name
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
+
+### Is there something you will improve ?
+yeah, for the moment the threads are runing and expeting to get a response fastly. Some might be late and because a delay is made, it might be longer than the expected delay (wich you can change). I'll make a better way to get the response and don't miss some.  
+The problem is the same for the unsuccessfull threads...
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
