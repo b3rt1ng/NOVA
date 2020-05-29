@@ -1,6 +1,6 @@
 # get_out
-get_out is under heavy developement for the moment
-
+get_out is under heavy developement for the moment  
+The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
 ## Next updates:
 
 * installation of dependecies file (for the database)
