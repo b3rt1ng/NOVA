@@ -1,6 +1,8 @@
-import threading,os,sys,subprocess,time
+import threading,os,sys,subprocess,time,uuid,re
+from scapy.all import *
 ip_list = []
-BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
+activation = False
+BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
 os.system('clear')
 def displayer(style, text, option = None):
 	if style == 'sucess':
@@ -48,7 +50,7 @@ def scanner():
 		thread_name = threading.Thread(target = ping, args = (ip_inscan, thread_name, ip, display))
 		thread_name.start()
 	global ip_list
-	time.sleep(2)
+	time.sleep(1)
 	return(ip_list)
 
 def vendor(mac_adress):
@@ -95,6 +97,8 @@ def resolve_mac(ip):
 		if ip_check == ip:
 			mac = output[index_list[i][1]+5:index_list[i][1]+22]
 			return mac
+	if ip_check != ip:
+		return (':'.join(re.findall('..', '%012x' % uuid.getnode())))
 
 def infoga():
 	hosts_info = []
@@ -107,18 +111,32 @@ def infoga():
 		if mac!=None:
 			hosts_temp.append(vendor(mac))
 		else:
-			displayer('error', 'mac format incoherent')
-			hosts_temp.append('None')
+			o=0
 		hosts_info.append(hosts_temp)
 		hosts_temp = []
-	return hosts_info
+	return hosts_info  
 
 
 def main():
 	hosts = infoga()
 	ip_current = ip_finder()
-	os.system('clear')
-	def display_info(hosts):
+	for i in range(len(hosts)):
+		if hosts[i][0] == ip_current:
+			mac_current = hosts[i][1]
+	def menu(hosts, selected = [], msg='                                                                              ',activation=''):
+		os.system('clear')
+		def show_help():
+			os.system('clear')
+			sys.stdout.write(MAGENTA + 'TARGET USAGE:' + '\n')
+			sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
+			sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
+			sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
+			sys.stdout.write(MAGENTA + 'start/stop arp '+ YELLOW + '- Start or stop arp poisoning on the selected targets' + '\n')
+			sys.stdout.write(MAGENTA + 'kick '+ YELLOW + '- Sen deauth packet on the selected targets' + '\n')
+			sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
+			sys.stdout.write(MAGENTA + 'press enter to return to the menu...')
+			enter_to_menu = input()
+			menu(hosts)
 		def line():
 			sys.stdout.write(RED + '+' + YELLOW + '-------'+ RED + '+' + YELLOW + '-----------------'+ RED + '+' + YELLOW + '-------------------'+ RED + '+' + YELLOW + '--------------------------------' + RED + '+' + '\n')
 		line()
@@ -140,9 +158,70 @@ def main():
 				color = RED
 			else:
 				color = GREEN
+			for j in range(len(selected)):
+				if selected[j][0] in ip_display:
+					color = CYAN
+					
+				
 			sys.stdout.write(YELLOW + '| ' + MAGENTA + ' [' + color + str(i) + MAGENTA + ']' + YELLOW + '  | ' + ip_display + ' | ' + mac_display + ' | ' + mac_vendor_display + ' | ' + '\n')
 		line()
-		sys.stdout.write(GREEN + 'GREEN' + BLUE + ' = ' + YELLOW + 'regular host' + '\n')
-		sys.stdout.write(RED + 'RED' + BLUE + ' = ' + YELLOW + 'your machine' + '\n')
-	display_info(hosts)
+		try:
+			if activation == False:
+				status = BLUE + ' ARP_POISON = ' + RED + 'OFF' + YELLOW
+			if activation == True:
+				status = BLUE + ' ARP_POISON = ' + GREEN + 'ON ' + YELLOW
+		except:
+			useless = True
+		try:
+			status
+		except:
+			status = BLUE + ' ARP_POISON = ' + RED + 'OFF' + YELLOW
+		sys.stdout.write(YELLOW + '| ' +GREEN + 'GREEN' + BLUE + ' = ' + YELLOW + 'regular host' + YELLOW + '                                                         |' + '\n')
+		sys.stdout.write(YELLOW + '| ' +RED + 'RED' + BLUE + ' = ' + YELLOW + 'your machine' + YELLOW + '                                                           |' + '\n')
+		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
+		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
+		sys.stdout.write(YELLOW + '|'+ status +'                                                             |' + '\n')
+		sys.stdout.write(YELLOW + '|'+ msg +'|' + '\n')
+		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
+		sys.stdout.write(MAGENTA + "> " )
+		choice = input()
+		if choice == '':
+			msg='                                                                              '
+			menu(hosts,selected,msg,activation)
+		if choice == 'help':
+			show_help()
+		if choice == 'start arp':
+			if len(selected) == 0:
+				msg=' no target                                                                    '
+				menu(hosts, selected, msg)
+			for i in range(len(selected)):
+				print('start arp')
+			menu(hosts, selected, activation = True)
+		if choice == 'stop arp':
+			for i in range(len(selected)):
+				print('stop arp')
+				menu(hosts)
+		if choice.isdigit() == True:
+			if len(choice)==1:
+				msg='                                                                              '
+				if hosts[int(choice)] in selected:
+					selected.pop(selected.index(hosts[int(choice)]))
+					menu(hosts, selected, msg, activation)
+				else:
+					selected.append(hosts[int(choice)])
+					menu(hosts, selected, msg, activation)
+			else:
+				#comming
+				msg=' multiple choice comming soon                                                 '
+				menu(hosts, selected, msg, activation)
+		if choice == 'exit':
+			if activation == True:
+				print('stop arp')
+			exit()
+		if choice != 'help':
+			msg=' invalid command                                                              '
+			menu(hosts, selected, msg, activation)
+
+				
+	menu(hosts)
 main()
