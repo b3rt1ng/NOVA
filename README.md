@@ -1,5 +1,5 @@
 # get_out
-get_out is under heavy developement for the moment and the arp spoofing isn't working proprely yet.  
+get_out is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
 The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
 ## Next updates:
 
