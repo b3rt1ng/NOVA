@@ -4,7 +4,7 @@ The script will allow you to perform ARP poisoning by analysing your network and
 ## Next updates:
 
 * installation of dependecies file (for the database)
-* ability to select multiple ip
+* ability to select multiple ip on the command line (you need to type them one by one rn)
 * ability to send maliscious packet like deauth or arp spoof
 * listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
