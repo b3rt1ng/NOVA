@@ -123,7 +123,7 @@ def main():
 	for i in range(len(hosts)):
 		if hosts[i][0] == ip_current:
 			mac_current = hosts[i][1]
-	def menu(hosts, selected = [], msg='                                                                              ',activation=''):
+	def menu(hosts, selected = [], msg='                                                                              ', activation='', gw=''):
 		os.system('clear')
 		def show_help():
 			os.system('clear')
@@ -132,7 +132,7 @@ def main():
 			sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
 			sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
 			sys.stdout.write(MAGENTA + 'start/stop arp '+ YELLOW + '- Start or stop arp poisoning on the selected targets' + '\n')
-			sys.stdout.write(MAGENTA + 'kick '+ YELLOW + '- Sen deauth packet on the selected targets' + '\n')
+			sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
 			sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
 			sys.stdout.write(MAGENTA + 'press enter to return to the menu...')
 			enter_to_menu = input()
@@ -158,6 +158,8 @@ def main():
 				color = RED
 			else:
 				color = GREEN
+			if hosts[i][0]==gw:
+				color = MAGENTA
 			for j in range(len(selected)):
 				if selected[j][0] in ip_display:
 					color = CYAN
@@ -178,6 +180,7 @@ def main():
 			status = BLUE + ' ARP_POISON = ' + RED + 'OFF' + YELLOW
 		sys.stdout.write(YELLOW + '| ' +GREEN + 'GREEN' + BLUE + ' = ' + YELLOW + 'regular host' + YELLOW + '                                                         |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +RED + 'RED' + BLUE + ' = ' + YELLOW + 'your machine' + YELLOW + '                                                           |' + '\n')
+		sys.stdout.write(YELLOW + '| ' +MAGENTA + 'MAGENTA' + BLUE + ' = ' + YELLOW + 'gateway' + YELLOW + '                                                            |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
 		sys.stdout.write(YELLOW + '|'+ status +'                                                             |' + '\n')
@@ -205,11 +208,17 @@ def main():
 			if len(choice)==1:
 				msg='                                                                              '
 				if hosts[int(choice)] in selected:
+					if hosts[int(choice)][0] == gw:
+						msg=' a selected device is the gateway                                             '
+						menu(hosts, selected, msg, activation, gw)
 					selected.pop(selected.index(hosts[int(choice)]))
-					menu(hosts, selected, msg, activation)
+					menu(hosts, selected, msg, activation, gw)
 				else:
+					if hosts[int(choice)][0] == gw:
+						msg=' a selected device is the gateway                                             '
+						menu(hosts, selected, msg, activation, gw)
 					selected.append(hosts[int(choice)])
-					menu(hosts, selected, msg, activation)
+					menu(hosts, selected, msg, activation, gw)
 			else:
 				#comming
 				msg=' multiple choice comming soon                                                 '
@@ -218,10 +227,12 @@ def main():
 			if activation == True:
 				print('stop arp')
 			exit()
+		if choice[:7]=='gateway':
+			gw = hosts[int(choice[8])][0]
+			menu(hosts, selected, msg, activation, gw)
 		if choice != 'help':
 			msg=' invalid command                                                              '
-			menu(hosts, selected, msg, activation)
-
+			menu(hosts, selected, msg, activation, gw)
 				
 	menu(hosts)
 main()
