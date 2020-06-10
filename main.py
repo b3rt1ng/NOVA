@@ -1,5 +1,5 @@
 import threading,os,sys,subprocess,time,uuid,re
-from scapy.all import *
+from scapy import *
 ip_list = []
 activation = False
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
