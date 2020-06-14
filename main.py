@@ -139,7 +139,7 @@ def main():
 	selected = []
 	msg='                                                                              '
 	activation=''
-	gw=''
+	gw=subprocess.getoutput("ip route show default | awk '/default/ {print $3}'")
 	def menu(hosts, selected, msg, activation, gw, iface):
 		os.system('clear')
 		def show_help():
