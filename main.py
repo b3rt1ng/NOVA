@@ -148,13 +148,13 @@ def main():
 			sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
 			sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
 			sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
-			sys.stdout.write(MAGENTA + 'start/stop arp '+ YELLOW + '- Start or stop arp poisoning on the selected targets' + '\n')
+			sys.stdout.write(MAGENTA + 'start/stop deauth '+ YELLOW + '- Start or stop sending deauth packet to targets' + '\n')
 			sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
 			sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
 			sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
 			sys.stdout.write(MAGENTA + 'press enter to return to the menu...')
 			enter_to_menu = input()
-			menu(hosts)
+			menu(hosts, selected, msg, activation, gw, iface)
 		def line():
 			sys.stdout.write(RED + '+' + YELLOW + '-------'+ RED + '+' + YELLOW + '-----------------'+ RED + '+' + YELLOW + '-------------------'+ RED + '+' + YELLOW + '--------------------------------' + RED + '+' + '\n')
 		line()
@@ -212,10 +212,15 @@ def main():
 			show_help()
 		if choice == 'interface':
 			os.system('clear')
+			iface = interface()
+			msg='                                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'start deauth':
 			if len(selected) == 0:
 				msg=' no target                                                                    '
+				menu(hosts, selected, msg, activation, gw, iface)
+			if iface == 'select one':
+				msg=' no interface on monitor mode                                                 '
 				menu(hosts, selected, msg, activation, gw, iface)
 			for i in range(len(selected)):
 				for j in range(len(hosts)):
