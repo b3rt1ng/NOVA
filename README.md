@@ -15,12 +15,10 @@ You need to get the wireshark OUI database in order to resolve the vendor name
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
 ### Is there something you will improve ?
-improvement done:
-"""
+improvement done:  
 - fast nework scan
 - detect the gateway
-- detect interface in monitor mode
-"""
+- detect interface in monitor mode  
 Work in progress:  
 The network scan launch some thread to know wich ip is up on the network. some ping might take longer that expected and sometime you will miss some Hosts. i plan on making a verbose system later to adjust it manually.  
 For the moment it only scan your network, there is no arp spoof or deauth system. I try to make it as simple as possible and eas to use. I don't wan to use too much external library to make it accessible and easy to modify for anyone from beginner to advanced programmer.  
