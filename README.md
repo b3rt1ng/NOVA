@@ -21,9 +21,9 @@ Improvement done:
 - detect interface in monitor mode  
 
 Work in progress:  
-The network scan launch some thread to know wich ip is up on the network. some ping might take longer that expected and sometime you will miss some Hosts. i plan on making a verbose system later to adjust it manually.  
-For the moment it only scan your network, there is no arp spoof or deauth system. I try to make it as simple as possible and eas to use. I don't wan to use too much external library to make it accessible and easy to modify for anyone from beginner to advanced programmer.  
-Because I want the script to be easy to modify and understand to everyone, I do not make my programming object oriented. sorry :(
+The network scan launch some thread to know wich ip is up on the network. some ping might take longer that expected and sometime you will miss some hosts. I plan on making a verbose system later to adjust it manually.  
+For the moment it only scan your network, there is no arp spoof or deauth system. I try to make it as simple as possible and easy to use. I don't wan to use too much external library to make it accessible and easy to modify for anyone from beginner to advanced programmer.  
+Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
