@@ -128,7 +128,7 @@ def interface():
 	output_value = output.find("mon")
 	if output_value == -1:
 		displayer('failure', 'interface on monitor mode not found')
-		return('select one')
+		return('not found')
 	displayer('sucess', str(output[output_value-5:output_value+3])+' Found')
 	return(output[output_value-5:output_value+3])
 
@@ -199,7 +199,10 @@ def main():
 		sys.stdout.write(YELLOW + '| ' +MAGENTA + 'MAGENTA' + BLUE + ' = ' + YELLOW + 'gateway' + YELLOW + '                                                            |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
-		sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +'                                                         |' + '\n')
+		if iface == 'not found':
+			sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +'                                                        |' + '\n')
+		else:
+			sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +'                                                         |' + '\n')
 		sys.stdout.write(YELLOW + '|'+ status +'                                                          |' + '\n')
 		sys.stdout.write(YELLOW + '|'+ msg +'|' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
@@ -219,7 +222,7 @@ def main():
 			if len(selected) == 0:
 				msg=' no target                                                                    '
 				menu(hosts, selected, msg, activation, gw, iface)
-			if iface == 'select one':
+			if iface == 'not found':
 				msg=' no interface on monitor mode                                                 '
 				menu(hosts, selected, msg, activation, gw, iface)
 			for i in range(len(selected)):
