@@ -2,7 +2,10 @@
 get_out is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
 The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
 # installation  
-
+```
+git clone https://github.com/b3rt1ng/get_out.git
+./install.sh
+```  
 ## Next updates:
 
 * ability to select multiple ip on the command line (you need to type them one by one rn)
