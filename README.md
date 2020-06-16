@@ -1,4 +1,4 @@
-[https://badgen.net/badge/made%20for/Linux/red]
+![linux](https://badgen.net/badge/made%20for/Linux/red)
 # get_out
 get_out is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
 The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
