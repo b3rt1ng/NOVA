@@ -4,7 +4,7 @@ NOVA is under heavy developement for the moment and the arp poisoning isn't work
 The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
 # ☄️ installation ☄️ 
 ```
-git clone https://github.com/b3rt1ng/get_out.git
+git clone https://github.com/b3rt1ng/NOVA-.git
 cd get_out/
 ./install.sh
 ```  
