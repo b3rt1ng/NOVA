@@ -3,6 +3,16 @@ from scapy.all import *
 ip_list = []
 activation = False
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
+if "-h" in sys.argv:
+	sys.stdout.write(MAGENTA + 'TARGET USAGE:' + '\n')
+	sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
+	sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
+	sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
+	sys.stdout.write(MAGENTA + 'start/stop deauth '+ YELLOW + '- Start or stop sending deauth packet to targets' + '\n')
+	sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
+	sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
+	sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
+	exit()
 os.system('clear')
 def displayer(style, text, option = None):
 	if style == 'sucess':
@@ -19,9 +29,16 @@ def displayer(style, text, option = None):
 		rtn = '\n'
 	prefix = MAGENTA + '[' + contain + MAGENTA + '] ' + YELLOW
 	sys.stdout.write(prefix + text + rtn)
-
+if "-pt" in sys.argv:
+	index = sys.argv.index('-pt')
+	ping_time = sys.argv[index+1]
+	displayer('info', 'ping time set to '+ping_time)
+if "-i" in sys.argv:
+	index = sys.argv.index('-i')
+	preset_iface = sys.argv[index+1]
+	displayer('info', 'interface set to '+preset_iface)
 def ip_finder():
-	output=subprocess.getoutput("ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+	output=subprocess.getoutput("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
 	displayer('sucess','user ip found ', 'noreturn');print(output)
 	return output
 
@@ -36,6 +53,11 @@ def ping(ip, thread_name, user_ip, display = None):
 			displayer('failure','host down ', 'noreturn');print(ip)
 
 def scanner():
+	try:
+		global ping_time
+		ping_time = int(ping_time)
+	except:
+		ping_time = 1
 	displayer('info','scaning on network')
 	ip = str(ip_finder())
 	scan_range = 255
@@ -50,7 +72,7 @@ def scanner():
 		thread_name = threading.Thread(target = ping, args = (ip_inscan, thread_name, ip, display))
 		thread_name.start()
 	global ip_list
-	time.sleep(1)
+	time.sleep(ping_time)
 	return(ip_list)
 
 def vendor(mac_adress):
@@ -123,14 +145,18 @@ def infoga():
 	return hosts_info
 
 def interface():
-	displayer('info', 'looking for wireless interface in monitor mode')
-	output=subprocess.getoutput("ifconfig")
-	output_value = output.find("mon")
-	if output_value == -1:
-		displayer('failure', 'interface on monitor mode not found')
-		return('not found')
-	displayer('sucess', str(output[output_value-5:output_value+3])+' Found')
-	return(output[output_value-5:output_value+3])
+	try:
+		global preset_iface
+		return preset_iface
+	except:
+		displayer('info', 'looking for wireless interface in monitor mode')
+		output=subprocess.getoutput("ifconfig")
+		output_value = output.find("mon")
+		if output_value == -1:
+			displayer('failure', 'interface on monitor mode not found')
+			return('not found')
+		displayer('sucess', str(output[output_value-5:output_value+3])+' Found')
+		return(output[output_value-5:output_value+3])
 
 def main():
 	hosts = infoga()
@@ -141,6 +167,7 @@ def main():
 	activation=''
 	gw=subprocess.getoutput("ip route show default | awk '/default/ {print $3}'")
 	def menu(hosts, selected, msg, activation, gw, iface):
+		space = ' '
 		os.system('clear')
 		def show_help():
 			os.system('clear')
@@ -199,10 +226,7 @@ def main():
 		sys.stdout.write(YELLOW + '| ' +MAGENTA + 'MAGENTA' + BLUE + ' = ' + YELLOW + 'gateway' + YELLOW + '                                                            |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
-		if iface == 'not found':
-			sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +'                                                        |' + '\n')
-		else:
-			sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +'                                                         |' + '\n')
+		sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +space*(65-len(iface))+'|' + '\n')
 		sys.stdout.write(YELLOW + '|'+ status +'                                                          |' + '\n')
 		sys.stdout.write(YELLOW + '|'+ msg +'|' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
