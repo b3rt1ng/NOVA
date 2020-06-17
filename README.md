@@ -5,8 +5,16 @@ The script will allow you to perform ARP poisoning by analysing your network and
 # installation  
 ```
 git clone https://github.com/b3rt1ng/get_out.git
+cd get_out/
 ./install.sh
 ```  
+# usage
+```
+python3 main.py
+``` 
+-i "interface" allow you to set up a custom interface by name if the script don't find anything on monitor mode  
+-pt "value" set a value to change the delay to wait the pings results  
+-h show the help menu  
 ## Next updates:
 
 * ability to select multiple ip on the command line (you need to type them one by one rn)
