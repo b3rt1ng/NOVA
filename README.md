@@ -2,33 +2,33 @@
 # 🌌 NOVA 🌌
 NOVA is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
 The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
-# installation  
+# ☄️ installation ☄️ 
 ```
 git clone https://github.com/b3rt1ng/get_out.git
 cd get_out/
 ./install.sh
 ```  
-# usage
+# 🌟 usage 🌟
 ```
 python3 main.py
 ``` 
 -i "interface" allow you to set up a custom interface by name if the script don't find anything on monitor mode  
 -pt "value" set a value to change the delay to wait the pings results  
 -h show the help menu  
-## Next updates:
+## ✨ Next updates ✨
 
 * ability to select multiple ip on the command line (you need to type them one by one rn)
 * ability to send maliscious packet like deauth or arp spoof
 * listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
-### what do you need to run this program ?
+### ⭐ what do you need to run this program ⭐
 
 For the moment you don't need to install any modules because it only use the in-builds ones just run the install file.
 
 You need to get the wireshark OUI database in order to resolve the vendor name
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
-### Is there something you will improve ?
+### 💫 Is there something you will improve 💫
 Improvement done:  
 - fast nework scan
 - detect the gateway
