@@ -40,7 +40,7 @@ For the moment it only scan your network, there is no arp spoof or deauth system
 Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
