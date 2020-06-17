@@ -8,6 +8,7 @@ git clone https://github.com/b3rt1ng/NOVA-.git
 cd get_out/
 ./install.sh
 ```  
+You'll need to install [scapy](https://scapy.net/) in order to perform al the differents attacks
 # 🌟 usage 🌟
 ```
 python3 main.py
