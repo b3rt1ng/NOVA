@@ -39,7 +39,7 @@ if "-i" in sys.argv:
 	preset_iface = sys.argv[index+1]
 	displayer('info', 'interface set to '+preset_iface)
 def ip_finder():
-	output=subprocess.getoutput("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+	output=subprocess.getoutput("ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
 	displayer('sucess','user ip found ', 'noreturn');print(output)
 	return output
 
