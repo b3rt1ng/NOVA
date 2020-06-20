@@ -6,6 +6,7 @@ The script will allow you to perform ARP poisoning by analysing your network and
 ```
 git clone https://github.com/b3rt1ng/NOVA.git
 cd get_out/
+chmod +x install.sh
 ./install.sh
 ```  
 You'll need to install [scapy](https://scapy.net/) in order to perform all the differents attacks
