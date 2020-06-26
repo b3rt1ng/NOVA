@@ -74,10 +74,16 @@ def scanner():
 	ip = str(ip_finder())
 	scan_range = 255
 	display = False
-	if ip[-2] == '.':
-		ip_cropped = ip[:-1]
-	if ip[-3] == '.':
-		ip_cropped = ip[:-2]
+	try:
+		if ip[-2] == '.':
+			ip_cropped = ip[:-1]
+	except:
+		wrong_size = True
+	try:
+		if ip[-3] == '.':
+			ip_cropped = ip[:-2]
+	except:
+		wrong_size = True
 	for i in range(scan_range):
 		ip_inscan = ip_cropped+str(i)
 		thread_name = 'thread-'+str(i)
@@ -305,10 +311,5 @@ def main():
 		if choice != 'help':
 			msg=' invalid command                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
-	try:
-		global debug
-		sys.stdout.write("press ENTER to continue. ")
-		input()
-	except:
-		menu(hosts, selected, msg, activation, gw, iface)
+	menu(hosts, selected, msg, activation, gw, iface)
 main()
