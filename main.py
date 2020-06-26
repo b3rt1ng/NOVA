@@ -88,6 +88,7 @@ def scanner():
 		ip_inscan = ip_cropped+str(i)
 		thread_name = 'thread-'+str(i)
 		thread_name = threading.Thread(target = ping, args = (ip_inscan, thread_name, ip, display))
+		time.sleep(.001)
 		thread_name.start()
 	global ip_list
 	time.sleep(ping_time)
