@@ -56,7 +56,7 @@ def ip_finder():
 
 def ping(ip, thread_name, user_ip, display = None):
 	try:
-		process = subprocess.check_output(["ping", "-c", "1", ip])
+		process = subprocess.check_output(["ping", "-c", "4", ip])
 		displayer('sucess','host up ', 'noreturn');print(ip)
 		global ip_list
 		ip_list.append(ip)
@@ -69,7 +69,7 @@ def scanner():
 		global ping_time
 		ping_time = int(ping_time)
 	except:
-		ping_time = 1
+		ping_time = 4
 	displayer('info','scaning on network')
 	ip = str(ip_finder())
 	scan_range = 255
