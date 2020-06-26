@@ -38,10 +38,21 @@ if "-i" in sys.argv:
 	index = sys.argv.index('-i')
 	preset_iface = sys.argv[index+1]
 	displayer('info', 'interface set to '+preset_iface)
+if "-ip" in sys.argv:
+	index = sys.argv.index('-ip')
+	preset_user_ip = sys.argv[index+1]
+	displayer('info', 'user ip set to '+preset_user_ip)
+if "--debug" in sys.argv:
+	debug = True
+	displayer('info', 'debug mode on')
 def ip_finder():
-	output=subprocess.getoutput("ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+	output=subprocess.getoutput("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
 	displayer('sucess','user ip found ', 'noreturn');print(output)
-	return output
+	try:
+		global preset_user_ip
+		return preset_user_ip
+	except:
+		return output
 
 def ping(ip, thread_name, user_ip, display = None):
 	try:
@@ -294,5 +305,10 @@ def main():
 		if choice != 'help':
 			msg=' invalid command                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
-	menu(hosts, selected, msg, activation, gw, iface)
+	try:
+		global debug
+		sys.stdout.write("press ENTER to continue. ")
+		input()
+	except:
+		menu(hosts, selected, msg, activation, gw, iface)
 main()
