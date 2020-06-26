@@ -175,8 +175,7 @@ def interface():
 			return('not found')
 		displayer('sucess', str(output[output_value-5:output_value+3])+' Found')
 		return(output[output_value-5:output_value+3])
-
-def main():
+def main(debug = False):
 	hosts = infoga()
 	ip_current = ip_finder()
 	iface = interface()
@@ -184,6 +183,9 @@ def main():
 	msg='                                                                              '
 	activation=''
 	gw=subprocess.getoutput("ip route show default | awk '/default/ {print $3}'")
+	if debug == True:
+		sys.stdout.write('press ENTER to continue. ')
+		input()
 	def menu(hosts, selected, msg, activation, gw, iface):
 		space = ' '
 		os.system('clear')
@@ -312,4 +314,5 @@ def main():
 			msg=' invalid command                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
 	menu(hosts, selected, msg, activation, gw, iface)
-main()
+main(debug)
+
