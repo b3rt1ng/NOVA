@@ -31,7 +31,7 @@ python3 main.py
 
 You need to have [scapy](https://scapy.net/) for python3.  
 
-You need to get the wireshark OUI database in order to resolve the vendor name
+if you didn't get the wireshark OUI database 
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
 ### 💫 Is there something you will improve 💫
