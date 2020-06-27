@@ -29,7 +29,7 @@ python3 main.py
 
 ### ⭐ what do you need to run this program ⭐
 
-For the moment you don't need to install any modules because it only use the in-builds ones just run the install file.
+You need to have [scapy](https://scapy.net/) for python3.  
 
 You need to get the wireshark OUI database in order to resolve the vendor name
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
