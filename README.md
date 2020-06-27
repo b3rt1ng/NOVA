@@ -31,7 +31,7 @@ python3 main.py
 
 You need to have [scapy](https://scapy.net/) for python3.  
 
-if you didn't get the wireshark OUI database 
+if you didn't get the wireshark OUI database by running the install file: 
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
 ### 💫 Is there something you will improve 💫
