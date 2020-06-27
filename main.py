@@ -46,7 +46,7 @@ if "--debug" in sys.argv:
 	debug = True
 	displayer('info', 'debug mode on')
 def ip_finder():
-	output=subprocess.getoutput("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+	output=subprocess.getoutput("ip -4 addr show" + "wlan0" + "| grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
 	displayer('sucess','user ip found ', 'noreturn');print(output)
 	try:
 		global preset_user_ip
