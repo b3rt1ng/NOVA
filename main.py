@@ -233,8 +233,13 @@ def main(debug = False):
 				color = MAGENTA
 			for j in range(len(selected)):
 				if selected[j][0] in ip_display:
-					color = CYAN
-			sys.stdout.write(YELLOW + '| ' + MAGENTA + ' [' + color + str(i) + MAGENTA + ']' + YELLOW + '  | ' + ip_display + ' | ' + mac_display + ' | ' + mac_vendor_display + ' | ' + '\n')
+					if len(selected[j][0]) == len(ip_display.replace(" ", "")):
+						color = CYAN
+			if len(str(i)) == 1:
+				last_g = ']  '
+			if len(str(i)) == 2:
+				last_g = '] '
+			sys.stdout.write(YELLOW + '| ' + MAGENTA + ' [' + color + str(i) + MAGENTA + last_g + YELLOW + '| ' + ip_display + ' | ' + mac_display + ' | ' + mac_vendor_display + ' | ' + '\n')
 		line()
 		try:
 			if activation == False:
@@ -330,7 +335,11 @@ def main(debug = False):
 			gw = hosts[int(choice[8])][0]
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice != 'help':
-			msg=' invalid command                                                              '
+			try:
+				print(choice)
+				input()
+			except:
+				msg=' invalid command                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
 	menu(hosts, selected, msg, activation, gw, iface)
 main(debug)
