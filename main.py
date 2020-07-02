@@ -4,15 +4,18 @@ from scapy.all import *
 ip_list = []
 activation = False
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
-if "-h" in sys.argv:
+def shelp():
+	os.system('clear')
 	sys.stdout.write(MAGENTA + 'TARGET USAGE:' + '\n')
 	sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
-	sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
+	sys.stdout.write(YELLOW + "example: '1' (single choice), '14 5 6 3' (multiple choices)" + '\n' + '\n')
 	sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
 	sys.stdout.write(MAGENTA + 'start/stop deauth '+ YELLOW + '- Start or stop sending deauth packet to targets' + '\n')
 	sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
 	sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
 	sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
+if "-h" in sys.argv:
+	shelp()
 	exit()
 os.system('clear')
 def displayer(style, text, option = None):
@@ -197,16 +200,8 @@ def main(debug = False):
 		os.system('clear')
 		def show_help():
 			os.system('clear')
-			sys.stdout.write(MAGENTA + 'TARGET USAGE:' + '\n')
-			sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
-			sys.stdout.write(YELLOW + "example: '1' (single choice), '14563' (multiple choices)" + '\n' + '\n')
-			sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
-			sys.stdout.write(MAGENTA + 'start/stop deauth '+ YELLOW + '- Start or stop sending deauth packet to targets' + '\n')
-			sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
-			sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
-			sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
-			sys.stdout.write(MAGENTA + 'press enter to return to the menu...')
-			enter_to_menu = input()
+			shelp()
+			enter_to_menu = input('press ENTER to continue. ')
 			menu(hosts, selected, msg, activation, gw, iface)
 		def line():
 			sys.stdout.write(RED + '+' + YELLOW + '-------'+ RED + '+' + YELLOW + '-----------------'+ RED + '+' + YELLOW + '-------------------'+ RED + '+' + YELLOW + '--------------------------------' + RED + '+' + '\n')
@@ -267,7 +262,7 @@ def main(debug = False):
 			msg='                                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'help':
-			show_help()
+			help()
 		if choice == 'interface':
 			os.system('clear')
 			iface = interface()
