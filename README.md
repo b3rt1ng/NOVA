@@ -21,7 +21,7 @@ python3 main.py [argument]
 | -ip "local ip" | this command allow you to set you local ip manually if the script have trouble while finding it |
 | -h | show the help menu |
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |  
-(You can use any argument at the same time)
+| --- | --- |(You can use any argument at the same time)
 
 ## ✨ Next updates ✨
   
