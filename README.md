@@ -12,7 +12,7 @@ chmod +x install.sh
 You'll need to install [scapy](https://scapy.net/) in order to perform all the differents attacks
 # 🌟 usage 🌟
 ```
-python3 main.py
+python3 main.py [argument]
 ``` 
 | Argument | Description |
 | --- | --- |
