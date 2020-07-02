@@ -14,7 +14,7 @@ You'll need to install [scapy](https://scapy.net/) in order to perform all the d
 ```
 python3 main.py
 ``` 
-| Command | Description |
+| Argument | Description |
 | --- | --- |
 | -i | allow you to set up a custom interface by name if the script don't find anything on monitor mode |
 | -pt "value" | set a value to change the delay to wait the pings results |
