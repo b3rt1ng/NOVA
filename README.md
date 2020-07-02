@@ -3,7 +3,7 @@
 NOVA is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
 The script will allow you to perform ARP poisoning by analysing your network and showing who is avariable.  
 Right now, NOVA is only performing an accurate and fast network scan.
-# ☄️ installation ☄️ 
+# ☄️ Installation ☄️ 
 ```
 git clone https://github.com/b3rt1ng/NOVA.git
 cd get_out/
@@ -11,7 +11,7 @@ chmod +x install.sh
 ./install.sh
 ```  
 You'll need to install [scapy](https://scapy.net/) in order to perform all the differents attacks
-# 🌟 usage 🌟
+# 🌟 Usage 🌟
 ```
 python3 main.py [argument]
 ``` 
@@ -31,7 +31,7 @@ python3 main.py [argument]
 * Ability to send maliscious packet like deauth or arp spoof
 * Listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
-### ⭐ what do you need to run this program ⭐
+### ⭐ What do you need to run this program ⭐
 
 You need to have [scapy](https://scapy.net/) for python3.  
 
