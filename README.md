@@ -16,10 +16,11 @@ python3 main.py
 ``` 
 | Command | Description |
 | --- | --- |
-| i | allow you to set up a custom interface by name if the script don't find anything on monitor mo |
-| pt "value" | set a value to change the delay to wait the pings results |
-| ip "local ip" | this command allow you to set you local ip manually if the script have trouble while finding it |
-| h | show the help menu |
+| -i | allow you to set up a custom interface by name if the script don't find anything on monitor mode |
+| -pt "value" | set a value to change the delay to wait the pings results |
+| -ip "local ip" | this command allow you to set you local ip manually if the script have trouble while finding it |
+| -h | show the help menu |
+| --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |
 ```
 -i "interface" |allow you to set up a custom interface by name if the script don't find anything on monitor mode  
 -pt "value"    |set a value to change the delay to wait the pings results  
