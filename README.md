@@ -23,8 +23,8 @@ python3 main.py
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |
 
 ## ✨ Next updates ✨
-
-* ability to select multiple ip on the command line (you need to type them one by one rn)
+  
+* ability to save the host list to use it on another program (and maybe load it back)
 * ability to send maliscious packet like deauth or arp spoof
 * listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
