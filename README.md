@@ -1,7 +1,8 @@
 ![linux_only](https://badgen.net/badge/made%20for/Linux/red) ![python_version](https://badgen.net/badge/python/3.7/yellow) ![console_only](https://badgen.net/badge/icon/terminal%20only/pink?icon=terminal&label)
 # 🌌 NOVA 🌌
 NOVA is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
-The script will allow you to perform ARP poisoning by analysing your network and showing who is disponible
+The script will allow you to perform ARP poisoning by analysing your network and showing who is avariable.  
+Right now, NOVA is only performing an accurate and fast network scan.
 # ☄️ installation ☄️ 
 ```
 git clone https://github.com/b3rt1ng/NOVA.git
