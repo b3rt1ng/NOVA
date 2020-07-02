@@ -306,21 +306,21 @@ def main(debug = False):
 					selected.append(hosts[int(choice)])
 					menu(hosts, selected, msg, activation, gw, iface)
 			else:
-				print(len(choice))
+				choice=choice+" "
 				digitn = 0
+				w = ""
 				n = []
 				for i in range(len(choice)):
-					if choice[i].isdigit() == True:
-						digitn = digitn + 1
-				for i in range(len(choice)):
-					if choice[i].isdigit() == True:
-						if hosts[int(choice[i])] in selected:
-							selected.pop(selected.index(hosts[int(choice[i])]))
-						else:
-							n.append(choice[i])
-							selected.append(hosts[int(choice[i])])
-					if len(n) == digitn:
-						break
+					if choice[i] != " ":
+						w = w+choice[i]
+					elif choice[i].isdigit() == False:
+						n.append(w)
+						w = ""
+				for i in range(len(n)):
+					if hosts[int(n[i])] in selected:
+						selected.pop(selected.index(hosts[int(n[i])]))
+					else:
+						selected.append(hosts[int(n[i])])
 				menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'exit':
 			if activation == True:
