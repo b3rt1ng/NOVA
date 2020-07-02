@@ -17,32 +17,32 @@ python3 main.py [argument]
 ``` 
 | Argument | Description |
 | --- | --- |
-| -i | allow you to set up a custom interface by name if the script don't find anything on monitor mode |
-| -pt "value" | set a value to change the delay to wait the pings results |
-| -ip "local ip" | this command allow you to set you local ip manually if the script have trouble while finding it |
-| -h | show the help menu |
+| -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode |
+| -pt "value" | Set a value to change the delay to wait the pings results |
+| -ip "local ip" | This command allow you to set you local ip manually if the script have trouble while finding it |
+| -h | Show the help menu |
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |  
   
   (You can use any argument at the same time)
 
 ## ✨ Next updates ✨
   
-* ability to save the host list to use it on another program (and maybe load it back)
-* ability to send maliscious packet like deauth or arp spoof
-* listen to the network and save the currents hosts by time to render a graphic and data analytics from it
+* Ability to save the host list to use it on another program (and maybe load it back)
+* Ability to send maliscious packet like deauth or arp spoof
+* Listen to the network and save the currents hosts by time to render a graphic and data analytics from it
 
 ### ⭐ what do you need to run this program ⭐
 
 You need to have [scapy](https://scapy.net/) for python3.  
 
-if you didn't get the wireshark OUI database by running the install file: 
+If you didn't get the wireshark OUI database by running the install file: 
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
 ### 💫 Is there something you will improve 💫
 Improvement done:  
-- fast nework scan
-- detect the gateway
-- detect interface in monitor mode  
+- Fast nework scan
+- Detect the gateway
+- Detect interface in monitor mode  
 
 Work in progress:  
 The network scan launch some thread to know wich ip is up on the network. some ping might take longer that expected and sometime you will miss some hosts. I plan on making a verbose system later to adjust it manually.  
