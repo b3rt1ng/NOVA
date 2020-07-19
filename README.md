@@ -24,7 +24,8 @@ python3 main.py [argument]
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |  
   
   (You can use any argument at the same time)
-
+# 🤔 Examples 🤔
+soon
 ## ✨ Next updates ✨
   
 * Ability to save the host list to use it on another program (and maybe load it back)
