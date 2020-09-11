@@ -87,6 +87,11 @@ def scanner():
 			ip_cropped = ip[:-2]
 	except:
 		wrong_size = True
+	try:
+		if ip[-4] == '.':
+			ip_cropped = ip[:-3]
+	except:
+		wrong_size = True
 	for i in range(scan_range):
 		ip_inscan = ip_cropped+str(i)
 		thread_name = 'thread-'+str(i)
