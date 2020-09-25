@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import threading,os,sys,subprocess,time,uuid,re
 from scapy.all import *
 ip_list = []
