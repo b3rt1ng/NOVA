@@ -14,7 +14,8 @@ You'll need to install [scapy](https://scapy.net/) in order to perform all the d
 # 🌟 Usage 🌟
 ```
 python3 main.py [argument]
-``` 
+```
+Note taht this script need the Super User privilege to run so type "sudo" before your command if needed.
 | Argument | Description |
 | --- | --- |
 | -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode |
