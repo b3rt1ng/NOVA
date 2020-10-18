@@ -6,7 +6,7 @@ Right now, NOVA is only performing an accurate and fast network scan.
 # ☄️ Installation ☄️ 
 ```
 git clone https://github.com/b3rt1ng/NOVA.git
-cd get_out/
+cd NOVA/
 chmod +x install.sh
 ./install.sh
 ```  
