@@ -33,6 +33,11 @@ def displayer(style, text, option = None):
 		rtn = '\n'
 	prefix = MAGENTA + '[' + contain + MAGENTA + '] ' + YELLOW
 	sys.stdout.write(prefix + text + rtn)
+if os.geteuid() == 0:
+	#if the script isn't rooted, it may not resolve the mac adress proprely.
+	0
+else:
+	displayer('error',"script does not have su permission")
 if "-pt" in sys.argv:
 	index = sys.argv.index('-pt')
 	ping_time = sys.argv[index+1]
