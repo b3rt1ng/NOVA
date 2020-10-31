@@ -1,6 +1,6 @@
 ![linux_only](https://badgen.net/badge/made%20for/Linux/red) ![python_version](https://badgen.net/badge/python/3.7/yellow) ![console_only](https://badgen.net/badge/icon/terminal%20only/pink?icon=terminal&label)
 # 🌌 NOVA 🌌
-NOVA is under heavy developement for the moment and the arp poisoning isn't working proprely yet.  
+NOVA is under heavy developement for the moment you'll be able to perform a proper arp spoofing on one device but i still need to perform more test on multiple devies.
 The script will allow you to perform ARP poisoning (or deauth depending on what i want) by analysing your network and showing who is avariable.  
 Right now, NOVA is only performing an accurate and fast network scan.
 # ☄️ Installation ☄️ 
