@@ -45,13 +45,13 @@ If you didn't get the wireshark OUI database by running the install file:
 
 ### 💫 troubleshooting 💫
 
-> *Q: The scrit doesn't resolve any mac adress, what do i do ?*  
+> *Q: The scrit doesn't resolve any mac adress, what do I do ?*  
 > R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
 
-> *Q: I can't install the manuf file usint the instalation script.*  
+> *Q: I can't install the manuf file using the instalation script.*  
 > R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
 
-> *Q: Why can i select my own device ? isn't it dangerous ?  
+> *Q: Why can I select my own device ? isn't it dangerous ?  
 > R: I will disable the ability to do this later. It Should not do anything bad tho. Still, you can choose to target the gateway by selecting multiple devices. This is not a problem but for the moment, it's not usefull since i didn't worked on the mitm attack yet.  
 
   
