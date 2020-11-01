@@ -25,8 +25,7 @@ Note taht this script need the Super User privilege to run so type "sudo" before
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |  
   
   (You can use any argument at the same time)
-# 🤔 Examples 🤔
-soon
+
 ## ✨ Specifications ✨
   
 | Argument | Description |
@@ -35,7 +34,7 @@ soon
 | ✔️ | Mac adress resolver |
 | ✔️ | Vendor name resolver |
 | ✔️ | ARP spoofing |
-| ❌ | Deauth attack |
+| ❌ | ARP spoofing (for MITM attack) |
 
 ### ⭐ What do you need to run this program ⭐
 
@@ -44,13 +43,13 @@ You need to have [scapy](https://scapy.net/) for python3.
 If you didn't get the wireshark OUI database by running the install file: 
 [Here it is](https://gitlab.com/wireshark/wireshark/raw/master/manuf)
 
-### 💫 Is there something you will improve 💫
-Improvement done:  
-- Fast nework scan
-- Detect the gateway and yourself
-- Detect interface in monitor mode
-- verbose
+### 💫 troubleshooting 💫
 
+Q: The scrit doesn't resolve any mac adress, what do i do ?  
+R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
+
+Q: I can't install the manuf file usint the instalation script.
+R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.
 Work in progress:    
 For the moment it only scan your network, there is no arp spoof or deauth system. I try to make it as simple as possible and easy to use. I don't want to use too much external library to make it accessible and easy to modify for anyone from beginner to advanced programmer.  
   
