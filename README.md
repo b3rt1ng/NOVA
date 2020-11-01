@@ -10,7 +10,7 @@ cd NOVA/
 chmod +x install.sh
 ./install.sh
 ```  
-You'll need to install [scapy](https://scapy.net/) in order to perform all the differents attacks
+You'll need to install [scapy](https://scapy.net/)
 # 🌟 Usage 🌟
 ```
 python3 main.py [argument]
