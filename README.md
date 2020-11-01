@@ -57,8 +57,8 @@ If you didn't get the wireshark OUI database by running the install file:
   
 _NOTE_: Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(  
 ### 👀 What it looks like 👀  
-[this](https://i.imgur.com/6c0Gnrq.png)
-## License
+![this](https://i.imgur.com/6c0Gnrq.png)  
+## License  
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
