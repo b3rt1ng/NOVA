@@ -18,7 +18,7 @@ python3 main.py [argument]
 Note taht this script need the Super User privilege to run so type "sudo" before your command if needed.
 | Argument | Description |
 | --- | --- |
-| -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode |
+| -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode. But you don't need to be on monitor mode to perform and arp spoofing attack, this feature isn't usefull yet ;) |
 | -pt "value" | Set a value to change the delay to wait the pings results |
 | -ip "local ip" | This command allow you to set you local ip manually if the script have trouble while finding it |
 | -h | Show the help menu |
