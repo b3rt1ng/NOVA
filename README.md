@@ -49,9 +49,8 @@ If you didn't get the wireshark OUI database by running the install file:
 > R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
 
 > *Q: I can't install the manuf file usint the instalation script.*
-> R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.
-Work in progress:    
-For the moment it only scan your network, there is no arp spoof or deauth system. I try to make it as simple as possible and easy to use. I don't want to use too much external library to make it accessible and easy to modify for anyone from beginner to advanced programmer.  
+> R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
+
   
 Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
 ## License
