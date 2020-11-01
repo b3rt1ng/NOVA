@@ -55,7 +55,9 @@ If you didn't get the wireshark OUI database by running the install file:
 > R: I will disable the ability to do this later. It Should not do anything bad tho. Still, you can choose to target the gateway by selecting multiple devices. This is not a problem but for the moment, it's not usefull since i didn't worked on the mitm attack yet.  
 
   
-_NOTE_: Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
+_NOTE_: Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(  
+### 👀 What it looks like 👀  
+[this](https://i.imgur.com/6c0Gnrq.png)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
