@@ -52,7 +52,7 @@ If you didn't get the wireshark OUI database by running the install file:
 > R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
 
   
-Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
+_NOTE_:Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
