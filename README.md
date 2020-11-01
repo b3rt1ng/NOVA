@@ -48,7 +48,7 @@ If you didn't get the wireshark OUI database by running the install file:
 > *Q: The scrit doesn't resolve any mac adress, what do i do ?*  
 > R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
 
-> *Q: I can't install the manuf file usint the instalation script.*
+> *Q: I can't install the manuf file usint the instalation script.*  
 > R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
 
   
