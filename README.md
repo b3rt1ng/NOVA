@@ -5,7 +5,7 @@ The script will allow you to perform ARP poisoning (or deauth depending on what 
 Right now, NOVA is only performing an accurate and fast network scan.
 # ☄️ Installation ☄️ 
 ```
-git clone https://github.com/b3rt1ng/NOVA.git
+git clone https://github.com/b3rt1ng/NOVA
 cd NOVA/
 chmod +x install.sh
 ./install.sh
