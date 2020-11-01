@@ -27,11 +27,15 @@ Note taht this script need the Super User privilege to run so type "sudo" before
   (You can use any argument at the same time)
 # 🤔 Examples 🤔
 soon
-## ✨ Next updates ✨
+## ✨ Specifications ✨
   
-* Ability to save the host list to use it on another program (and maybe load it back)
-* Ability to send maliscious packet like deauth or arp spoof
-* Listen to the network and save the currents hosts by time to render a graphic and data analytics from it
+| Argument | Description |
+| --- | --- |
+| ✔️ | Fast network scan |
+| ✔️ | Mac adress resolver |
+| ✔️ | Vendor name resolver |
+| ✔️ | ARP spoofing |
+| ❌ | Deauth attack |
 
 ### ⭐ What do you need to run this program ⭐
 
