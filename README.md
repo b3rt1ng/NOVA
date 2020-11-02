@@ -28,8 +28,6 @@ Note taht this script need the Super User privilege to run so type "sudo" before
 
 ## ✨ Specifications ✨
   
-| Argument | Description |
-| --- | --- |
 | ✔️ | Fast network scan |
 | ✔️ | Mac adress resolver |
 | ✔️ | Vendor name resolver |
