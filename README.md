@@ -44,7 +44,7 @@ If you didn't get the wireshark OUI database by running the install file:
 
 ### 💫 troubleshooting 💫
 
-> *Q: The scrit doesn't resolve any mac adress, what do I do ?*  
+> *Q: The scrit is not resolving any mac adress, what do I do ?*  
 > R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
 
 > *Q: I can't install the manuf file using the instalation script.*  
