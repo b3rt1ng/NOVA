@@ -123,7 +123,10 @@ def vendor(mac_adress):
 			return string
 		text = remove_text(text)
 		text = remove_space(text)
+		temp=text
 		text = remove_text(text)
+		if text == "\n":
+			return temp[:-1]
 		return remove_space(text).rstrip()
 	displayer('info', 'resolving vendor of ', 'noreturn');print(mac_adress)
 	mac_adress = mac_adress[:-9]
@@ -131,7 +134,10 @@ def vendor(mac_adress):
 	search = open("manuf")
 	for line in search:
 		if mac_adress in line:
-			return treat(line)
+			try:
+				return treat(line)
+			except:
+				return "_NOVA_RESOLVING_ERROR_"
 
 def resolve_mac(ip):
 	displayer('info','resolving mac of ', 'noreturn');print(ip)
