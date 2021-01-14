@@ -1,6 +1,6 @@
 ![linux_only](https://badgen.net/badge/made%20for/Linux/red) ![python_version](https://badgen.net/badge/python/3.7/yellow) ![console_only](https://badgen.net/badge/icon/terminal%20only/pink?icon=terminal&label)
 # 🌌 NOVA 🌌
-NOVA is under heavy developement, for the moment you'll be able to perform a proper arp spoofing on one device but i still need to perform more test on multiple devies.
+NOVA is under heavy developement, at the moment you'll be able to perform a proper arp spoofing on one device but i still need to perform more test on multiple devies.
 # ☄️ Installation ☄️ 
 ```
 git clone https://github.com/b3rt1ng/NOVA
