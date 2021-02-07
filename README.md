@@ -13,7 +13,7 @@ You'll need to install [scapy](https://scapy.net/)
 ```
 python3 main.py [argument]
 ```
-Note taht this script need the Super User privilege to run so type "sudo" before your command if needed.
+Note that this script need the Super User privilege to run so type "sudo" before your command if needed.
 | Argument | Description |
 | --- | --- |
 | -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode. But you don't need to be on monitor mode to perform and arp spoofing attack, this feature isn't usefull yet ;) |
