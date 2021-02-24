@@ -49,7 +49,7 @@ If you didn't get the wireshark OUI database by running the install file:
 > R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
 
 > *Q: Why can I select my own device ? isn't it dangerous ?  
-> R: I will disable the ability to do this later. It Should not do anything bad tho. Still, you can choose to target the gateway by selecting multiple devices. This is not a problem but for the moment, it's not usefull since i didn't worked on the mitm attack yet.  
+> R: I will disable the ability to do this later. It Should not do anything bad tho. Still, you can choose to target the gateway by selecting multiple devices. This is not a problem but for the moment, it's not usefull since I didn't worked on the mitm attack yet.  
 
   
 _NOTE_: Because I want the script to be easy to modify and understandale to everyone, I do not make my programming object oriented. sorry :(  
