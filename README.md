@@ -20,7 +20,7 @@ Note that this script need the Super User privilege to run so type "sudo" before
 | -pt "value" | Set a value to change the delay to wait the pings results |
 | -ip "local ip" | This command allow you to set you local ip manually if the script have trouble while finding it |
 | -h | Show the help menu |
-| --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what it does |  
+| --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what's happening |  
   
   (You can use any argument at the same time)
 
