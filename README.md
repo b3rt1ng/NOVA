@@ -18,7 +18,7 @@ Note that this script need the Super User privilege to run so type "sudo" before
 | --- | --- |
 | -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode. But you don't need to be on monitor mode to perform an arp spoofing attack, this feature isn't usefull yet ;) |
 | -pt "value" | Set a value to change the delay to wait the pings results |
-| -ip "local ip" | This command allow you to set you local ip manually if the script have trouble while finding it |
+| -ip "local ip" | This command allow you to set your local ip manually if the script have trouble while finding it |
 | -h | Show the help menu |
 | --debug | The script will wait for you to continue before displaying the menu, it's easyer to see what's happening |  
   
