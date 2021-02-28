@@ -14,8 +14,14 @@ def shelp():
 	sys.stdout.write(MAGENTA + 'gateway x '+ YELLOW + "- set the gateway. type in the gateway number insthead of 'x'" + '\n')
 	sys.stdout.write(MAGENTA + 'interface '+ YELLOW + '- try to find an interface on monitor mode' + '\n')
 	sys.stdout.write(MAGENTA + 'exit '+ YELLOW + '- quit the script' + '\n')
+def opthelp():
+	os.system('clear')
+	sys.stdout.write(YELLOW + '-i      ' + BLUE + 'iface name ' + WHITE + "allows you to enter manually a custom interface if the script doesn't find it" + '\n')
+	sys.stdout.write(YELLOW + '-pt     ' + BLUE + 'value      ' + WHITE + "define the time laps before the script stop waiting for threads results" + '\n')
+	sys.stdout.write(YELLOW + '-ip     ' + BLUE + 'value      ' + WHITE + "allows you to enter manually your ip if the script doesn't find it" + '\n')
+	sys.stdout.write(YELLOW + '--debug ' + BLUE + '           ' + WHITE + "The script will wait for you to continue before displaying the menu, it's easyer to see what's happening" + '\n')
 if "-h" in sys.argv:
-	shelp()
+	opthelp()
 	exit()
 os.system('clear')
 def displayer(style, text, option = None):
