@@ -285,7 +285,7 @@ def main(debug = False):
 			msg='                                                                              '
 			menu(hosts, selected, msg, activation, gw, iface)
 		if choice == 'help':
-			help()
+			shelp()
 		if choice == 'interface':
 			os.system('clear')
 			iface = interface()
