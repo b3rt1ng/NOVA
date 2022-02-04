@@ -13,7 +13,7 @@ You'll need to install [scapy](https://scapy.net/)
 ```
 python3 main.py [argument]
 ```
-Note that this script need the Super User privilege to run so type "sudo" before your command if needed.
+Note that this script need the Super User privilege in some cases to run, so type "sudo" before your command if needed.
 | Argument | Description |
 | --- | --- |
 | -i | Allow you to set up a custom interface by name if the script don't find anything on monitor mode. But you don't need to be on monitor mode to perform an arp spoofing attack, this feature isn't usefull yet ;) |
@@ -30,8 +30,8 @@ Note that this script need the Super User privilege to run so type "sudo" before
 | ✔️ | Fast network scan |
 | ✔️ | Mac adress resolver |
 | ✔️ | Vendor name resolver |
-| ✔️ | ARP spoofing |
-| ❌ | ARP spoofing (for MITM attack) |
+| ✔️ | ARP poisoning |
+| ❌ | ARP poisoning (for MITM attack) |
 
 ### ⭐ What do you need to run this program ⭐
 
@@ -43,7 +43,7 @@ If you didn't get the wireshark OUI database by running the install file:
 ### 💫 troubleshooting 💫
 
 > *Q: The scrit is not resolving any mac adress, what do I do ?*  
-> R: This is most likely because you didn't ran the script as a superuser so the script cannot execute the ARP command and get the current ARP table.
+> R: This is most likely because you didn't ran the script as a superuser so the script cannot get the current ARP table.
 
 > *Q: I can't install the manuf file using the instalation script.*  
 > R: Just save the [manuf](https://gitlab.com/wireshark/wireshark/raw/master/manuf) file on the same folder as NOVA and just name it "manuf". The script will then be able to use it.  
